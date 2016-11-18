@@ -1,0 +1,54 @@
+.container {
+	background-image: url("../images/background.png");
+	background-size: 33%;
+    background-repeat: repeat;
+}
+
+.jumbotron {
+	height: 150px;
+    background-color: rgba(32, 171, 158, 0.62);
+    border-bottom: #a94442;
+    border-style: solid;
+}
+
+h1 {
+	font-size: 50px;
+    text-align: center;
+    color: #333;
+    margin: 0px;
+}
+
+.container {
+	width: 100%;
+    padding: 0px;
+    height: auto;
+}
+
+#startButton {
+	height: 100px;
+    font-size: 24px;
+    margin: 0px 40%;
+}
+
+#timedContent {
+	width: 75%;
+    margin: 0px auto;
+    background-color: aquamarine;
+    height: 500px;
+    margin-bottom: 100px;
+}
+
+#timer {
+	margin: 20px auto;
+    width: 100%;
+    text-align: center;
+    border-style: solid;
+    border-color: red;
+    border-width: 3px;
+}
+
+#question {
+	 width: 100%;
+    text-align: center;
+}
+}
