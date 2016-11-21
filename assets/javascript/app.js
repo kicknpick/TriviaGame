@@ -40,23 +40,32 @@ $(document).ready(function() {
 		var correct;
 		var wrong;
 		
-		
+		// create timer function
 		function runTimer() {
 			var count = setInterval(countDown, 1000);
-			
-			function countDown() {
+			countdown();
+		};
+		
+		// function reset() {
+		// 	clearInterval(count);
+		// };
+
+		// create counting function for runTimer  
+		function countDown() {
 				if (time > 0) {
 					time--;
 					var timeString = time.toString();			 	
 				 	$("#timer").html(timeString);
 				 	console.log(timeString);
-				} else {
-					reset();
-				};
-						
-			};	
-			
+				} else if (time == 0) {
+					clearInterval(count);
+				}
 		};
+						
+				
+			
+		
+		console.log(runTimer());
 		
 		
 		// create an array containing question, answers, correct answer and image
@@ -97,22 +106,17 @@ $(document).ready(function() {
 		console.log(triviaArray[3].answer[2]);
 		
 		
-
-		// function to reset the timer and question/answer buttons
-		function reset() {
-			clearInterval(count);
-			time = 31;
-			$("#answerButtons").empty();
-		};
 		
 		// ask the quest
 		function ask() {
-			// for (i=0; i < triviaArray[i].length; i++) {
-				$("#question").html(triviaArray[0].question);
-				$("#questionImage").append(triviaArray[0].image);
-
+			for (i=0; i < triviaArray.length; i++) {
+				$("#question").html(triviaArray[i].question);
+				$("#questionImage").append(triviaArray[i].image);
+			};
+			console.log(ask());
 				// run for loop to display answers
-				for (i = 0; i < triviaArray[0].answer[i].length; i++ ) {
+				
+				for (i = 0; i < triviaArray[0].answer.length; i++ ) {
 					var btn = $("<button>" + triviaArray[0].answer[i] + "</button>");
 					btn.attr("answer", triviaArray[0].answer[i]);
 					btn.addClass("A1");
@@ -181,22 +185,22 @@ $(document).ready(function() {
 				// $(".answer").html(A1[i]);
 		
 		
-		$("#startButton").on("click", "A1" , function() {
-				if (A1 == "Wax on, wax off") {
-					correct++;
-					("#startButton").html("That is correct, Danielson.");
-					reset();
-					Q2();
-				} else if (time === 0) {
-					wrong++;
-					reset();
-					Q2();
-				} else if (A1 !== "Wax on, wax off") {
-					wrong++;
-					reset();
-					Q2();
-				}
-			});
+		// $("#startButton").on("click", "A1" , function() {
+		// 		if (A1 == "Wax on, wax off") {
+		// 			correct++;
+		// 			("#startButton").html("That is correct, Danielson.");
+		// 			reset();
+		// 			Q2();
+		// 		} else if (time === 0) {
+		// 			wrong++;
+		// 			reset();
+		// 			Q2();
+		// 		} else if (A1 !== "Wax on, wax off") {
+		// 			wrong++;
+		// 			reset();
+		// 			Q2();
+		// 		}
+		// 	});
 
 	});
 });
