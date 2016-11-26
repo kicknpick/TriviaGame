@@ -39,11 +39,11 @@ $(document).ready(function() {
 		var time = 31;
 		var correct;
 		var wrong;
-		
+		var count;
 		// create timer function
 		function runTimer() {
-			var count = setInterval(countDown, 1000);
-			countdown();
+			count = setInterval(countDown, 1000);
+			countDown();
 		};
 		
 		// function reset() {
@@ -65,20 +65,20 @@ $(document).ready(function() {
 				
 			
 		
-		console.log(runTimer());
+		// console.log(runTimer());
 		
 		
 		// create an array containing question, answers, correct answer and image
 		var triviaArray = [
 			{
 				question: "What is the famous phrase Mr. Miyagi says in this scene?",
-				image: "assets/images/cobra.png",
+				image: "assets/images/flyingkick.png",
 				answer: ["Live free or die hard", "Dude, where's my car", "Wax on, wax off", "High kick, low kick"],
 				correctAnswer: "Wax on, wax off"
 			},
 			{
 				question: "What is the name of the special move the Karate Kid is about to deploy in this scene?",
-				image: "assets/images/cobra.png",
+				image: "assets/images/flyingkick.png",
 				answer: ["The Happy Gilmore", "Crane Kick", "Mega Punch", "Sucker Punch"],
 				correctAnswer: "Crane Kick"
 			},
@@ -103,22 +103,24 @@ $(document).ready(function() {
 		];
 		// test triviaArray
 		console.log(triviaArray[0].question);
-		console.log(triviaArray[3].answer[2]);
+		console.log(triviaArray[3].image);
 		
 		
 		
 		// ask the quest
 		function ask() {
+			console.log('working');
 			for (i=0; i < triviaArray.length; i++) {
 				$("#question").html(triviaArray[i].question);
-				$("#questionImage").append(triviaArray[i].image);
+				$("#questionImage").html(triviaArray[i].image);
 			};
-			console.log(ask());
+			
 				// run for loop to display answers
 				
 				for (i = 0; i < triviaArray[0].answer.length; i++ ) {
 					var btn = $("<button>" + triviaArray[0].answer[i] + "</button>");
 					btn.attr("answer", triviaArray[0].answer[i]);
+					btn.attr("type", "radio");
 					btn.addClass("A1");
 					btn.appendTo("#answerButtons");
 				};
@@ -132,6 +134,9 @@ $(document).ready(function() {
 
 		};
 		ask();
+
+		// radiobuttons instead of buttons
+		// <input type="radio" name="data" value="male">Male<br>
 
 		// function askQ2() {
 		// 	// ask question
