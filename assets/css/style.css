@@ -15,6 +15,11 @@
     color: #fde86e;
 }
 
+#questionRow {
+    margin-right: 0px;
+    margin-left: 0px;
+};
+
 .title {
 	
     text-align: center;
@@ -61,7 +66,7 @@
 }
 
 #timer {
-	margin: 20px auto;
+	margin: 10px auto;
     width: 100%;
     text-align: center;
     border-bottom-style: solid;
@@ -77,9 +82,24 @@
 
 #questionImage {
     size: 200px;
-    height: 200px;
+    height: 90%;
+    width: 90%;
+    margin: 5px 25px;
 }
 
+.answerButtons {
+    margin: 0px 5%;
+}
 
+#correct, #wrong {
+    width: 25%;
+    float: none;
+}
+
+#scoreRow {
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 25px;
+}
 
 

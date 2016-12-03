@@ -2,73 +2,13 @@
 // if (selection) == (correct answer)
 $(document).ready(function() {
 
-	// alert("Instructions: Click on the correct answer to each Karate Kid trivia question before time expires. If you do not choose an answer before the time expires it will automatically send you to the next question. Good luck!");
-
-	// start game on click
-// 	var timer = {
-//     time:30,
-//     reset: function(){
-//         timer.time = 30;
-//         $("#timer").html("30");
-//     },
-//     start: function(){
-//         counter = setInterval(timer.count, 30000);
-//     },
-//     count: function(){
-//         timer.time--;
-//         var converted = timer.timeConverter(stopwatch.time);
-//         $('#display').html(converted);
-//     },
-//     timeConverter: function(){
-//         if (timer.time === 0){
-//             seconds = time;
-//         }
-//         if (minutes === 0){
-//             minutes = "00";
-//         } else if (minutes < 10){
-//             minutes = "0" + minutes;
-//         }
-//         return minutes + ":" + seconds;
-//     }
-// };
-
-	$("#startButton").click(function(){
-		
-
-	// runs a function that will start timer, pull up first question, and provide answer choices
+// runs a function that will start timer, pull up first question, and provide answer choices
 		var time = 31;
-		var correct;
-		var wrong;
+		var correct = 0;
+		var wrong = 0;
 		var count;
-		// create timer function
-		function runTimer() {
-			count = setInterval(countDown, 1000);
-			countDown();
-		};
-		
-		// function reset() {
-		// 	clearInterval(count);
-		// };
 
-		// create counting function for runTimer  
-		function countDown() {
-				if (time > 0) {
-					time--;
-					var timeString = time.toString();			 	
-				 	$("#timer").html(timeString);
-				 	console.log(timeString);
-				} else if (time == 0) {
-					clearInterval(count);
-				}
-		};
-						
-				
-			
-		
-		// console.log(runTimer());
-		
-		
-		// create an array containing question, answers, correct answer and image
+// create an array containing question, answers, correct answer and image
 		var triviaArray = [
 			{
 				question: "What is the famous phrase Mr. Miyagi says in this scene?",
@@ -103,8 +43,35 @@ $(document).ready(function() {
 		];
 		// test triviaArray
 		console.log(triviaArray[0].question);
-		console.log(triviaArray[3].image);
+		console.log(triviaArray[3].image)
+		console.log(triviaArray[4].answer[3]);
+
+
+		// create timer function
+		function runTimer() {
+			count = setInterval(countDown, 1000);
+			countDown();
+		};
 		
+		// function reset() {
+		// 	clearInterval(count);
+		// };
+
+		// create counting function for runTimer  
+		function countDown() {
+				if (time > 0) {
+					time--;
+					var timeString = time.toString();			 	
+				 	$("#timer").html(timeString);
+				 	console.log(timeString);
+				} else if (time == 0) {
+					clearInterval(count);
+				}
+		};
+
+	$("#startButton").click(function(){
+		runTimer();
+
 		
 		
 		// ask the quest
@@ -112,100 +79,48 @@ $(document).ready(function() {
 			console.log('working');
 			for (i=0; i < triviaArray.length; i++) {
 				$("#question").html(triviaArray[i].question);
-				$("#questionImage").html(triviaArray[i].image);
+				$("#questionImage").attr("src", triviaArray[i].image);
 			};
 			
 				// run for loop to display answers
 				
-				for (i = 0; i < triviaArray[0].answer.length; i++ ) {
-					var btn = $("<button>" + triviaArray[0].answer[i] + "</button>");
-					btn.attr("answer", triviaArray[0].answer[i]);
+				for (i = 0; i < triviaArray[i].answer.length; i++ ) {
+					var btn = $("<button>" + triviaArray[i].answer[i] + "</button>");
+					btn.attr("answer", triviaArray[i].answer[i]);
 					btn.attr("type", "radio");
-					btn.addClass("A1");
+					btn.addClass("answerButtons");
 					btn.appendTo("#answerButtons");
 				};
-			// };
-			// start countdown
-			runTimer();
-			
-
-			
+				
 
 
 		};
 		ask();
 
+
 		// radiobuttons instead of buttons
-		// <input type="radio" name="data" value="male">Male<br>
+		// <input type="radio" name="data" value="male">Male<br
 
-		// function askQ2() {
-		// 	// ask question
-		// 	$("#question").html(triviaObject.Q2);
-
-		// 	$("#questionImage").append(triviaObject.image2);
-		// 	// run for loop to display answers
-		// 	for (i = 0; i < triviaObject.A2.length; i++ ) {
-		// 		var btn = $("<button>" + triviaObject.A2[i] + "</button>");
-		// 		btn.attr("answer", triviaObject.A2[i]);
-		// 		btn.addClass("A2");
-		// 		btn.appendTo("#answerButtons");
-		// 	};
-		// 	console.log(askQ2);		
-		// 	runTimer();
-		// 	// add eventListener when user chooses answer
-		// 	// $(".A1").on("click", function(){
-		// 	// 	if ($(".A1") === "Wax on, wax off")
-		// };
-			
-		// function askQ3() {
-		// 	// ask question
-		// 	$("#question").html(triviaObject.Q3);
-
-		// 	$("#questionImage").append(triviaObject.image3);
-		// 	// run for loop to display answers
-		// 	for (i = 0; i < triviaObject.A3.length; i++ ) {
-		// 		var btn = $("<button>" + triviaObject.A3[i] + "</button>");
-		// 		btn.attr("answer", triviaObject.A3[i]);
-		// 		btn.addClass("A3");
-		// 		btn.appendTo("#answerButtons");
-		// 	};
-		// 	console.log(askQ3);
-		// };		
-
-		// function askQ4() {
-		// 	// ask question
-		// 	$("#question").html(triviaObject.Q4);
-
-		// 	$("#questionImage").append(triviaObject.image4);
-		// 	// run for loop to display answers
-		// 	for (i = 0; i < triviaObject.A4.length; i++ ) {
-		// 		var btn = $("<button>" + triviaObject.A4[i] + "</button>");
-		// 		btn.attr("answer", triviaObject.A1[i]);
-		// 		btn.addClass("A4");
-		// 		btn.appendTo("#answerButtons");
-		// 	};
-		// 	console.log(askQ4);
-		// };
-
-				// $(".answer").html(A1[i]);
-		
-		
-		// $("#startButton").on("click", "A1" , function() {
-		// 		if (A1 == "Wax on, wax off") {
-		// 			correct++;
-		// 			("#startButton").html("That is correct, Danielson.");
-		// 			reset();
-		// 			Q2();
-		// 		} else if (time === 0) {
-		// 			wrong++;
-		// 			reset();
-		// 			Q2();
-		// 		} else if (A1 !== "Wax on, wax off") {
-		// 			wrong++;
-		// 			reset();
-		// 			Q2();
-		// 		}
-		// 	});
 
 	});
+
+	function checkAnswer() {
+			if ($("answer") === (triviaArray[0].answer[3] || triviaArray[2].answer[2] || triviaArray[3].answer[3] || triviaArray[4].answer[1])) {
+				time == 0;
+				var newCorrect = correct++;
+				$("#correct").html("Correct: " + newCorrect);
+				console.log('correctworking');
+			} else {
+				time == 0;
+				var newWrong = wrong++;
+				$("#wrong").html("Wrong: " + newWrong);
+				runTimer();
+				console.log("wrongworking")
+			};
+		};
+
+$(document).on("click", "#answerButtons", function() {
+			checkAnswer();
+			console.log('checkAnswerworking');
+		});
 });
