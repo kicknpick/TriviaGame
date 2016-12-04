@@ -6,13 +6,14 @@ $(document).ready(function() {
 		var time = 31;
 		var correct = 0;
 		var wrong = 0;
+		var myLocation = 0;
 		var count;
 
 // create an array containing question, answers, correct answer and image
 		var triviaArray = [
 			{
 				question: "What is the famous phrase Mr. Miyagi says in this scene?",
-				image: "assets/images/flyingkick.png",
+				image: "assets/images/waxOn.png",
 				answer: ["Live free or die hard", "Dude, where's my car", "Wax on, wax off", "High kick, low kick"],
 				correctAnswer: "Wax on, wax off"
 			},
@@ -24,13 +25,13 @@ $(document).ready(function() {
 			},
 			{
 				question: "Which of the following films has the female in this picture NOT performed in?",
-				image: "assets/images/cobra.png",
+				image: "assets/images/castPic.png",
 				answer: ["The Saint", "Back To The Future", "Karate Kid II", "Cocktail"],
 				correctAnswer: "Karate Kid II"
 			},
 			{
 				question: "What does Mr. Miyagi do with the chopsticks in this scene?",
-				image: "assets/images/cobra.png",
+				image: "assets/images/catchingFly.png",
 				answer: ["Catch a fly with chopsticks", "Eat some great sushi with chopsticks", "Throw the chopsticks at the Karate Kid", "Break the chopsticks in half"],
 				correctAnswer: "Catch a fly with chopsticks"
 			},
@@ -69,35 +70,41 @@ $(document).ready(function() {
 				}
 		};
 
-	$("#startButton").click(function(){
-		runTimer();
 
+	function ask() {
+		console.log('working');
+		// for (i=0; i < triviaArray.length; i++) {
+
+			$("#question").empty();
+			$("#questionImage").empty();
+			$("#answerButtons").empty();
+			$("#question").html(triviaArray[myLocation].question);
+			$("#questionImage").attr("src", triviaArray[myLocation].image);
+		// };
 		
-		
-		// ask the quest
-		function ask() {
-			console.log('working');
-			for (i=0; i < triviaArray.length; i++) {
-				$("#question").html(triviaArray[i].question);
-				$("#questionImage").attr("src", triviaArray[i].image);
+			// run for loop to display answers
+			
+			for (i = 0; i < triviaArray[myLocation].answer.length; i++ ) {
+				var btn = $("<button>" + triviaArray[myLocation].answer[i] + "</button>");
+				btn.attr("answer", triviaArray[myLocation].answer[i]);
+				btn.attr("type", "radio");
+				btn.addClass("answerButtons");
+				btn.appendTo("#answerButtons");
 			};
 			
-				// run for loop to display answers
-				
-				for (i = 0; i < triviaArray[i].answer.length; i++ ) {
-					var btn = $("<button>" + triviaArray[i].answer[i] + "</button>");
-					btn.attr("answer", triviaArray[i].answer[i]);
-					btn.attr("type", "radio");
-					btn.addClass("answerButtons");
-					btn.appendTo("#answerButtons");
-				};
-				
 
 
-		};
+	};
+
+	$("#startButton").click(function(){
+		runTimer();
+		
+		// ask the quest
+		
 		ask();
 
 
+		// counter instead of for loop/seperate ask function/
 		// radiobuttons instead of buttons
 		// <input type="radio" name="data" value="male">Male<br
 
@@ -105,7 +112,9 @@ $(document).ready(function() {
 	});
 
 	function checkAnswer() {
-			if ($("answer") === (triviaArray[0].answer[3] || triviaArray[2].answer[2] || triviaArray[3].answer[3] || triviaArray[4].answer[1])) {
+		console.log(triviaArray[myLocation].correctAnswer);
+		// $(this).attr("answer")
+			if ($(this).attr("answer") === triviaArray[myLocation].correctAnswer) {
 				time == 0;
 				var newCorrect = correct++;
 				$("#correct").html("Correct: " + newCorrect);
@@ -117,9 +126,13 @@ $(document).ready(function() {
 				runTimer();
 				console.log("wrongworking")
 			};
-		};
+		myLocation++;
+		ask();
+	};
 
 $(document).on("click", "#answerButtons", function() {
+			//$(this)
+			console.log(this);
 			checkAnswer();
 			console.log('checkAnswerworking');
 		});
