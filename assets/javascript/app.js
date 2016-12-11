@@ -1,6 +1,6 @@
 // randomize function for mixing answers in array
 // if (selection) == (correct answer)
-$(document).ready(function() {
+$('document').ready(function() {
 
 // runs a function that will start timer, pull up first question, and provide answer choices
 		var time = 31;
@@ -15,7 +15,7 @@ $(document).ready(function() {
 				question: "What is the famous phrase Mr. Miyagi says in this scene?",
 				image: "assets/images/waxOn.png",
 				answer: ["Live free or die hard", "Dude, where's my car", "Wax on, wax off", "High kick, low kick"],
-				correctAnswer: "Wax on, wax off"
+				correctAnswer: "Wax on, wax off" 
 			},
 			{
 				question: "What is the name of the special move the Karate Kid is about to deploy in this scene?",
@@ -44,7 +44,7 @@ $(document).ready(function() {
 		];
 		// test triviaArray
 		console.log(triviaArray[0].question);
-		console.log(triviaArray[3].image)
+		console.log(triviaArray[3].image);
 		console.log(triviaArray[4].answer[3]);
 
 
@@ -130,9 +130,9 @@ $(document).ready(function() {
 		ask();
 	};
 
-$(document).on("click", "#answerButtons", function() {
+$(document).on("click", "#answerContainer", function() {
 			//$(this)
-			console.log(this);
+			console.log("this=",this);
 			checkAnswer();
 			console.log('checkAnswerworking');
 		});
